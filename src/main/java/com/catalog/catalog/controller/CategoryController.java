@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.catalog.catalog.model.Attribute;
 import com.catalog.catalog.model.Category;
 import com.catalog.catalog.service.CategoryService;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class CategoryController {
@@ -17,11 +20,13 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	@RequestMapping(value="category",method=RequestMethod.POST)
-	public String addCatgory(@RequestBody Category category){
+	@ApiOperation(value="Add Category", response=Category.class)
+	public Category addCatgory(@RequestBody Category category){
 		return categoryService.insertCategory(category);
 	}
 	
 	@RequestMapping(value="category/{categoryId}",method=RequestMethod.GET)
+	@ApiOperation(value="Get Category", response=Category.class)
 	public Category getCategory(@PathVariable("categoryId") Long categoryId){
 		return categoryService.getCategory(categoryId);
 	}

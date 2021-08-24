@@ -15,9 +15,9 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryRepository categoryRepository;
 	
 	
-	public String insertCategory(Category category){
-		categoryRepository.save(category);
-		return "success";
+	public Category insertCategory(Category category){
+		category=categoryRepository.save(category);
+		return category;
 	}
 	
 

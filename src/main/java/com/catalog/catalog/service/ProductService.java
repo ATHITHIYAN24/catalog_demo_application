@@ -8,7 +8,7 @@ import com.catalog.catalog.wapper.ProductResponse;
 
 public interface ProductService {
 
-	String insertProduct(Product product);
+	Product insertProduct(Product product);
 
 	ProductResponse getProduct(Long productId);
 

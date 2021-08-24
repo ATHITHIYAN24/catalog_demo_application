@@ -35,16 +35,16 @@ public class ProductServiceImpl implements ProductService {
 	private CategoryRepository categoryRepository;
 
 	@Transactional
-	public String insertProduct(Product product) {
+	public Product insertProduct(Product product) {
 		if (product.getCategory() != null) {
 			Optional<Category> category = categoryRepository.findById(product.getCategory().getCategoryId());
 			if (category.isPresent()) {
 				product.setCategory(category.get());
-				productRepository.save(product);
-				return "success";
+				product = productRepository.save(product);
+				return product;
 			}
 		}
-		return "Failed";
+		return null;
 
 	}
 

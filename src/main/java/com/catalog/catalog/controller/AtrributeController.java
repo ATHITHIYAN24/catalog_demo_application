@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.catalog.catalog.model.Attribute;
 import com.catalog.catalog.service.AttributeService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class AtrributeController {
 	
@@ -17,11 +19,13 @@ public class AtrributeController {
 	private AttributeService attributeService;
 	
 	@RequestMapping(value="attribute",method=RequestMethod.POST)
-	public String addAttribute(@RequestBody Attribute attribute){
+	@ApiOperation(value="Add Attribute", response=Attribute.class)
+	public Attribute addAttribute(@RequestBody Attribute attribute){
 		return attributeService.insertAttribute(attribute);
 	}
 	
 	@RequestMapping(value="attribute/{attributeId}",method=RequestMethod.GET)
+	@ApiOperation(value="Get Attribute", response=Attribute.class)
 	public Attribute getAttribute(@PathVariable("attributeId") Long attributeID){
 		return attributeService.getAttribute(attributeID);
 	}

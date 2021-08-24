@@ -15,9 +15,9 @@ public class AttributeServiceImpl implements AttributeService {
 	private AttributeRepository attributeRepository;
 	
 	
-	public String insertAttribute(Attribute attribute){
-		attributeRepository.save(attribute);
-		return "success";
+	public Attribute insertAttribute(Attribute attribute){
+		attribute=attributeRepository.save(attribute);
+		return attribute;
 	}
 	
 	public Attribute getAttribute(Long attributeID){
