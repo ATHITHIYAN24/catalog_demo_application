@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.catalog.catalog.model.Attribute;
-import com.catalog.catalog.model.Category;
 import com.catalog.catalog.model.Product;
 import com.catalog.catalog.service.ProductService;
 import com.catalog.catalog.wapper.ProductResponse;
+import com.catalog.catalog.wapper.ProdutAttributeRequest;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
+@Api(value="Product" , description="Operations Product")
 public class ProductController {
 	
 	@Autowired
@@ -37,8 +38,8 @@ public class ProductController {
 	
 	@RequestMapping(value="product/{productId}",method=RequestMethod.PUT)
 	@ApiOperation(value="Add Attribute to Product", response=ProductResponse.class)
-	public ProductResponse setAttributeToProduct(@PathVariable("productId") Long productId,@RequestBody List<Attribute> attributes){
-		return productService.addAttributesToProduct(productId,attributes);			
+	public ProductResponse setAttributeToProduct(@PathVariable("productId") Long productId,@RequestBody List<ProdutAttributeRequest> produtAttributeRequest){
+		return productService.addAttributesToProduct(productId,produtAttributeRequest);			
 	}
 	
 	

@@ -18,6 +18,7 @@ import com.catalog.catalog.repo.AttributeRepository;
 import com.catalog.catalog.repo.CategoryRepository;
 import com.catalog.catalog.repo.ProductRepository;
 import com.catalog.catalog.wapper.ProductResponse;
+import com.catalog.catalog.wapper.ProdutAttributeRequest;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -64,10 +65,12 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 
-	public ProductResponse addAttributesToProduct(Long productId, List<Attribute> attributes) {
+	//Add the Attribute to Product
+	public ProductResponse addAttributesToProduct(Long productId,
+			List<ProdutAttributeRequest> produtAttributeRequests) {
 		List<Attribute> exsitingAttribute = new ArrayList<Attribute>();
-		for (Attribute attribute : attributes) {
-			Optional<Attribute> extingAttribute = attributeRepository.findById(attribute.getAttributeId());
+		for (ProdutAttributeRequest produtAttributeRequest : produtAttributeRequests) {
+			Optional<Attribute> extingAttribute = attributeRepository.findById(produtAttributeRequest.getAttributeId());
 			if (extingAttribute.isPresent()) {
 				exsitingAttribute.add(extingAttribute.get());
 			}
@@ -76,12 +79,18 @@ public class ProductServiceImpl implements ProductService {
 		Optional<Product> productOptional = productRepository.findById(productId);
 		if (productOptional.isPresent()) {
 			for (Attribute exstingAttribute : exsitingAttribute) {
-			ProductAttribute productAttribute = attributeProductRepository.findByProductIdAndAttributeId(productId, exstingAttribute.getAttributeId());
-				if(productAttribute==null){
-				ProductAttribute productAbt = new ProductAttribute();
-				productAbt.setAttribute(exstingAttribute);
-				productAbt.setProduct(productOptional.get());
-				attributeProductRepository.save(productAbt);
+				for (ProdutAttributeRequest produtAttributeRequest : produtAttributeRequests) {
+					if (produtAttributeRequest.getAttributeId().equals(exstingAttribute.getAttributeId())) {
+						ProductAttribute productAttribute = attributeProductRepository
+								.findByProductIdAndAttributeId(productId, exstingAttribute.getAttributeId());
+						if (productAttribute == null) {
+							ProductAttribute productAbt = new ProductAttribute();
+							productAbt.setAttribute(exstingAttribute);
+							productAbt.setProduct(productOptional.get());
+							productAbt.setAttributeValue(produtAttributeRequest.getAttributeValue());
+							attributeProductRepository.save(productAbt);
+						}
+					}
 				}
 			}
 

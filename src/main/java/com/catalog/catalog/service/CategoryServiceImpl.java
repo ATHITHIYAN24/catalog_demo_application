@@ -10,23 +10,20 @@ import com.catalog.catalog.repo.CategoryRepository;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
-	
-	public Category insertCategory(Category category){
-		category=categoryRepository.save(category);
+
+	public Category insertCategory(Category category) {
+		category = categoryRepository.save(category);
 		return category;
 	}
-	
 
-	public Category getCategory(Long categoryId){
-		Optional<Category> categoryOptional=categoryRepository.findById(categoryId);
-		if(categoryOptional.isPresent()){
+	public Category getCategory(Long categoryId) {
+		Optional<Category> categoryOptional = categoryRepository.findById(categoryId);
+		if (categoryOptional.isPresent()) {
 			return categoryOptional.get();
-		}
-		else{
+		} else {
 			return null;
 		}
 	}

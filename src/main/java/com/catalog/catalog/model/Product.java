@@ -25,6 +25,8 @@ public class Product {
 	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "category_id", referencedColumnName = "category_id", updatable = true)
 	private Category category;
+	
+	
 
 	public String getName() {
 		return name;

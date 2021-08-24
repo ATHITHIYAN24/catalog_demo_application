@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.catalog.catalog.model.Attribute;
 import com.catalog.catalog.service.AttributeService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
+@Api(value="Attribute" , description="Operation Attribute")
 public class AtrributeController {
 	
 	@Autowired

@@ -20,8 +20,6 @@ public class Attribute {
 	@Column(name="attribute_name")
 	private String attributeName;
 	
-	@Column(name="attribute_value")
-	private String attributeValue;
 
 	public Long getAttributeId() {
 		return attributeId;
@@ -37,16 +35,6 @@ public class Attribute {
 
 	public void setAttributeName(String attributeName) {
 		this.attributeName = attributeName;
-	}
-
-	public String getAttributeValue() {
-		return attributeValue;
-	}
-
-	public void setAttributeValue(String attributeValue) {
-		this.attributeValue = attributeValue;
-	}
-	
-	
+	}	
 	
 }

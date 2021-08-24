@@ -26,6 +26,9 @@ public class ProductAttribute {
 	@ManyToOne(fetch = FetchType.EAGER, optional = true)
 	@JoinColumn(name = "attribute_id", referencedColumnName = "attribute_id", updatable = true)
 	private Attribute attribute;
+	
+	@Column(name="attribute_value")
+	private String attributeValue;
 
 	public Long getProductAtrributeId() {
 		return productAtrributeId;
@@ -50,5 +53,15 @@ public class ProductAttribute {
 	public void setAttribute(Attribute attribute) {
 		this.attribute = attribute;
 	}
+
+	public String getAttributeValue() {
+		return attributeValue;
+	}
+
+	public void setAttributeValue(String attributeValue) {
+		this.attributeValue = attributeValue;
+	}
+	
+	
 	
 }

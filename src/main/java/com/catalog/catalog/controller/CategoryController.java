@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.catalog.catalog.model.Attribute;
 import com.catalog.catalog.model.Category;
 import com.catalog.catalog.service.CategoryService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
+@Api(value="Category" , description="Operations Category")
 public class CategoryController {
 	
 	@Autowired
