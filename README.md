@@ -1,7 +1,9 @@
 # catalog_demo_application
+
 Demo application for Omnirio interview
+
 Description
-                             In this application, we can able to add OR get a product that belongs to a certain category and attributes. We can also able add OR get a category and attribute.
+   In this application, we can able to add OR get a product that belongs to a certain category and attributes. We can also able add OR get a category and attribute.
 
 Getting Started
   Database design
